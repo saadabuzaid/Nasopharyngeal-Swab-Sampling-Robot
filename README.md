@@ -1,4 +1,4 @@
-<br> 
+
 # Capstone Individual project CE301/ Saad Abuzaid Saad
 <br/>
 * This is a Robot assisting in nasopharyngeal swab sampling project. I will post the software code, which controls the robot, the hardware design, and documentation of this project. <br/>

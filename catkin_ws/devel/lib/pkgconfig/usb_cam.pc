@@ -1,8 +1,8 @@
-prefix=/home/saadabuzaid/catkin_ws/devel
+prefix=/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel
 
 Name: usb_cam
 Description: Description of usb_cam
 Version: 0.3.6
-Cflags: -I/home/saadabuzaid/catkin_ws/src/usb_cam/include
+Cflags: -I/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/usb_cam/include
 Libs: -L${prefix}/lib -lusb_cam
 Requires: 

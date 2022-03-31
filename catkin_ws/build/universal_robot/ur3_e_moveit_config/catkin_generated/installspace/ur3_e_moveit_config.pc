@@ -1,4 +1,4 @@
-prefix=/home/saadabuzaid/catkin_ws/install
+prefix=/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/install
 
 Name: ur3_e_moveit_config
 Description: Description of ur3_e_moveit_config

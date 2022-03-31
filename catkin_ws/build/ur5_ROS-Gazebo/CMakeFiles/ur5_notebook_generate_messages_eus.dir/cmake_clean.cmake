@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ur5_notebook_generate_messages_eus"
-  "/home/saadabuzaid/catkin_ws/devel/share/roseus/ros/ur5_notebook/msg/Tracker.l"
-  "/home/saadabuzaid/catkin_ws/devel/share/roseus/ros/ur5_notebook/msg/blocks_poses.l"
-  "/home/saadabuzaid/catkin_ws/devel/share/roseus/ros/ur5_notebook/manifest.l"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/share/roseus/ros/ur5_notebook/msg/blocks_poses.l"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/share/roseus/ros/ur5_notebook/msg/Tracker.l"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/share/roseus/ros/ur5_notebook/manifest.l"
 )
 
 # Per-language clean rules from dependency scanning.

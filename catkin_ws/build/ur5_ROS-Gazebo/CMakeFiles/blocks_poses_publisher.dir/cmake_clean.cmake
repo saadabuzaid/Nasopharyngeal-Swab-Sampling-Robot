@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/blocks_poses_publisher.dir/blocks_poses_publisher.cpp.o"
-  "/home/saadabuzaid/catkin_ws/devel/lib/ur5_notebook/blocks_poses_publisher.pdb"
-  "/home/saadabuzaid/catkin_ws/devel/lib/ur5_notebook/blocks_poses_publisher"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/lib/ur5_notebook/blocks_poses_publisher.pdb"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/lib/ur5_notebook/blocks_poses_publisher"
 )
 
 # Per-language clean rules from dependency scanning.

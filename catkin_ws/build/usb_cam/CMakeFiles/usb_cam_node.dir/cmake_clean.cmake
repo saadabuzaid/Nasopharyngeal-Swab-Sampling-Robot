@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/usb_cam_node.dir/nodes/usb_cam_node.cpp.o"
-  "/home/saadabuzaid/catkin_ws/devel/lib/usb_cam/usb_cam_node.pdb"
-  "/home/saadabuzaid/catkin_ws/devel/lib/usb_cam/usb_cam_node"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/lib/usb_cam/usb_cam_node.pdb"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/lib/usb_cam/usb_cam_node"
 )
 
 # Per-language clean rules from dependency scanning.

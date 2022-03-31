@@ -67,14 +67,14 @@ set(ce301_pkg_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(ce301_pkg_SOURCE_PREFIX /home/saadabuzaid/catkin_ws/src/ce301_pkg)
-  set(ce301_pkg_DEVEL_PREFIX /home/saadabuzaid/catkin_ws/devel)
+  set(ce301_pkg_SOURCE_PREFIX /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/ce301_pkg)
+  set(ce301_pkg_DEVEL_PREFIX /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel)
   set(ce301_pkg_INSTALL_PREFIX "")
   set(ce301_pkg_PREFIX ${ce301_pkg_DEVEL_PREFIX})
 else()
   set(ce301_pkg_SOURCE_PREFIX "")
   set(ce301_pkg_DEVEL_PREFIX "")
-  set(ce301_pkg_INSTALL_PREFIX /home/saadabuzaid/catkin_ws/install)
+  set(ce301_pkg_INSTALL_PREFIX /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/install)
   set(ce301_pkg_PREFIX ${ce301_pkg_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/saadabuzaid/catkin_ws/install/lib;/home/saadabuzaid/catkin_ws/devel/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/install/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

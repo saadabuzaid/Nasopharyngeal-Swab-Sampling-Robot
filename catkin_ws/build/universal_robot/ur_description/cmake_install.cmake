@@ -1,8 +1,8 @@
-# Install script for directory: /home/saadabuzaid/catkin_ws/src/universal_robot/ur_description
+# Install script for directory: /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/universal_robot/ur_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/saadabuzaid/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,29 +33,29 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/saadabuzaid/catkin_ws/build/universal_robot/ur_description/catkin_generated/installspace/ur_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build/universal_robot/ur_description/catkin_generated/installspace/ur_description.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description/cmake" TYPE FILE FILES
-    "/home/saadabuzaid/catkin_ws/build/universal_robot/ur_description/catkin_generated/installspace/ur_descriptionConfig.cmake"
-    "/home/saadabuzaid/catkin_ws/build/universal_robot/ur_description/catkin_generated/installspace/ur_descriptionConfig-version.cmake"
+    "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build/universal_robot/ur_description/catkin_generated/installspace/ur_descriptionConfig.cmake"
+    "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build/universal_robot/ur_description/catkin_generated/installspace/ur_descriptionConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE FILE FILES "/home/saadabuzaid/catkin_ws/src/universal_robot/ur_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE FILE FILES "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/universal_robot/ur_description/package.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE DIRECTORY FILES "/home/saadabuzaid/catkin_ws/src/universal_robot/ur_description/launch")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE DIRECTORY FILES "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/universal_robot/ur_description/launch")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE DIRECTORY FILES "/home/saadabuzaid/catkin_ws/src/universal_robot/ur_description/urdf")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE DIRECTORY FILES "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/universal_robot/ur_description/urdf")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE DIRECTORY FILES "/home/saadabuzaid/catkin_ws/src/universal_robot/ur_description/meshes")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ur_description" TYPE DIRECTORY FILES "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/universal_robot/ur_description/meshes")
 endif()
 

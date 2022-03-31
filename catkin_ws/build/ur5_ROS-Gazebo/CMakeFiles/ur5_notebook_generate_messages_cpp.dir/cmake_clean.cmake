@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ur5_notebook_generate_messages_cpp"
-  "/home/saadabuzaid/catkin_ws/devel/include/ur5_notebook/Tracker.h"
-  "/home/saadabuzaid/catkin_ws/devel/include/ur5_notebook/blocks_poses.h"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/include/ur5_notebook/blocks_poses.h"
+  "/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/include/ur5_notebook/Tracker.h"
 )
 
 # Per-language clean rules from dependency scanning.

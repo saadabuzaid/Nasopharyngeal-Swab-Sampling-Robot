@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/saadabuzaid/catkin_ws/devel/include/ur5_notebook/blocks_poses.h
+/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel/include/ur5_notebook/blocks_poses.h
 string
 -
 vector
@@ -22,7 +22,7 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/home/saadabuzaid/catkin_ws/src/ur5_ROS-Gazebo/blocks_poses_publisher.cpp
+/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/ur5_ROS-Gazebo/blocks_poses_publisher.cpp
 ros/ros.h
 -
 vector

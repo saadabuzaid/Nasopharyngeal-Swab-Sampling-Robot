@@ -1,0 +1,8 @@
+prefix=/home/saadabuzaid/catkin_ws/devel
+
+Name: ce301_pkg
+Description: Description of ce301_pkg
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -10,6 +10,7 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 import rospy
 
 waypoints = [[0.0, -1.5708, 1.5708, 0.6, 0, -0.33], [0,0,0,0,0,0]]
+"""
 def faceDetected():
 	#get image from camera on robot
 	image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -25,7 +26,7 @@ def faceDetected():
 		return false
 	else
 		return true
-
+"""
 def main():
 
     rospy.init_node('send_joints')
@@ -43,12 +44,14 @@ def main():
 
     rate = rospy.Rate(1)
     elbow_joint = 1.5708
+    wrist_1_joint = 0.6
     pts = JointTrajectoryPoint()
     traj.header.stamp = rospy.Time.now()
 
     while not rospy.is_shutdown():
-        elbow_joint -= 0.2
-        pts.positions = [0.0, -1.5708, elbow_joint, 0.6, 0, -0.33]
+        elbow_joint -= 0.1
+        wrist_1_joint -= 0.1
+        pts.positions = [0.0, -1.5708, elbow_joint, wrist_1_joint, 0, -0.33]
         pts.time_from_start = rospy.Duration(1.0)
 
         # Set the points to the trajectory
@@ -57,8 +60,8 @@ def main():
         # Publish the message
         pub.publish(traj)
         rate.sleep()
-		if(faceDetected)
-			break
+        #if(faceDetected)
+			#break
 
 if __name__ == '__main__':
     try:

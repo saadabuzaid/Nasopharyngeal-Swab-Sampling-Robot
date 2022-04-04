@@ -149,7 +149,7 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py scripts/setupRobot.py
+catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py scripts/setupRobot.py scripts/detect_face.py
  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

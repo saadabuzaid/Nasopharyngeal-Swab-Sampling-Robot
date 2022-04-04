@@ -2,7 +2,7 @@
 
 
 import cv2
-image = cv2.imread("testtt.png")
+image = cv2.imread("testImage.png")
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 face_cascade = cv2.CascadeClassifier("/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
 # detect all the faces in the image

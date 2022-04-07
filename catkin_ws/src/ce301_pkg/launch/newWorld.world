@@ -227,10 +227,10 @@
       <pose frame=''>-0.046654 0.743453 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>261 371000000</sim_time>
-      <real_time>70 28956667</real_time>
-      <wall_time>1648661766 438489587</wall_time>
-      <iterations>67753</iterations>
+      <sim_time>3211 948000000</sim_time>
+      <real_time>3047 392114263</real_time>
+      <wall_time>1649352365 770786429</wall_time>
+      <iterations>2950577</iterations>
       <model name='cafe_table'>
         <pose frame=''>-0.046654 0.743453 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -252,13 +252,13 @@
         </link>
       </model>
       <model name='person_standing'>
-        <pose frame=''>0.949008 0.940456 -1e-06 -1e-06 -1e-06 -1.54839</pose>
+        <pose frame=''>0.893235 0.939234 0 0 -1e-06 -1.54795</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>0.949008 0.940456 -1e-06 -1e-06 -1e-06 -1.54839</pose>
+          <pose frame=''>0.893235 0.939234 0 0 -1e-06 -1.54795</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>1.10337 1.64568 -1.45806 -1.6682 1.21479 0.045046</acceleration>
-          <wrench>88.2694 131.655 -116.645 0 -0 0</wrench>
+          <acceleration>-0.717607 -2.13967 1.10064 2.14965 -0.850247 -0.08452</acceleration>
+          <wrench>-57.4086 -171.174 88.0509 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>

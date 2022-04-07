@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 import roslib
-#roslib.load_manifest('unibas_face_distance_calculator')
+roslib.load_manifest('ce301_pkg')
 import sys
 import rospy
 import cv2
@@ -19,10 +19,10 @@ class get_face_distance_from_camera:
      
     self.bridge = CvBridge()
     
-    self.camera_info_sub = message_filters.Subscriber('/ur5/usbcam/camera_info', CameraInfo)
+    self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
            	
-    self.image_sub = message_filters.Subscriber("/ur5/usbcam/image_raw",Image)
-    self.depth_sub = message_filters.Subscriber("/ur5/usbcam/image_raw/compressedDepth",Image)
+    self.image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
+    self.depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
         
     self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub], queue_size=10, slop=0.5)
     self.ts.registerCallback(self.callback)

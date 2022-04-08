@@ -1,135 +1,129 @@
-#!/usr/bin/python
-#
-# Send joint values to UR5 using messages
-#
+#!/usr/bin/env python
+from __future__ import print_function
 
-from std_msgs.msg import Header
-from trajectory_msgs.msg import JointTrajectory
-
-from trajectory_msgs.msg import JointTrajectoryPoint
-import dlib
+import roslib
+roslib.load_manifest('unibas_face_distance_calculator')
+import sys
 import rospy
 import cv2
-import sys
 import numpy as np
 import message_filters
 from std_msgs.msg import String
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import Image, CameraInfo
 from cv_bridge import CvBridge, CvBridgeError
+import math
 
+class get_face_distance_from_camera:
 
-waypoints = [[0.0, -1.5708, 1.5708, 0.6, 0, -0.33], [0,0,0,0,0,0]]
-
-class face_detector:
-    def __init__(self):
-        self.bridge = CvBridge()
+  def __init__(self):     
+     
+    self.bridge = CvBridge()
     
-        self.image_sub = rospy.Subscriber("/kinect/color/image_raw", Image, self.detectFace)
-    
-        self.pub = rospy.Publisher('/ce301/nostrils', Image, queue_size=1)	
-        self.stop_flag = False
+    self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
+           	
+    self.image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
+    self.depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
+        
+    self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub], queue_size=10, slop=0.5)
+    self.ts.registerCallback(self.callback)
+        
+    self.pub = rospy.Publisher('/unibas_face_distance_calculator/faces', Image, queue_size=1)	
 
-    def detectFace(self, rgb_data):
+  def callback(self, rgb_data, depth_data, camera_info):
     
-        try:
-            img = self.bridge.imgmsg_to_cv2(rgb_data, "bgr8")
-            face_cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml')
-            #face_cascade.load('haarcascade_frontalface_default.xml')
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-            print"Number of faces detected",len(faces)
-            if(len(faces) > 0):
-                self.stop_flag = True
-                self.nostrilsDetection(gray,img)
-            else: 
-                self.move
+    try:
+      camera_info_K = np.array(camera_info.K)
+      
+      # Intrinsic camera matrix for the raw (distorted) images.
+      #     [fx  0 cx]
+      # K = [ 0 fy cy]
+      #     [ 0  0  1]
+    
+      m_fx = camera_info.K[0];
+      m_fy = camera_info.K[4];
+      m_cx = camera_info.K[2];
+      m_cy = camera_info.K[5];
+      inv_fx = 1. / m_fx;
+      inv_fy = 1. / m_fy;
+    
+    
+      cv_rgb = self.bridge.imgmsg_to_cv2(rgb_data, "bgr8")
+      depth_image = self.bridge.imgmsg_to_cv2(depth_data, "32FC1")
+      depth_array = np.array(depth_image, dtype=np.float32)
+      cv2.normalize(depth_array, depth_array, 0, 1, cv2.NORM_MINMAX)
+      depth_8 = (depth_array * 255).round().astype(np.uint8)
+      cv_depth = np.zeros_like(cv_rgb)
+      cv_depth[:,:,0] = depth_8
+      cv_depth[:,:,1] = depth_8
+      cv_depth[:,:,2] = depth_8
+      
+      face_cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml')
+      gray = cv2.cvtColor(cv_rgb, cv2.COLOR_BGR2GRAY)
+      faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+      rgb_height, rgb_width, rgb_channels = cv_rgb.shape
+      for (x,y,w,h) in faces:
+        cv2.rectangle(cv_rgb,(x,y),(x+w,y+h),(255,0,0),2)
+        cv2.rectangle(cv_depth,(x,y),(x+w,y+h),(255,0,0),2)
+        cv2.rectangle(cv_rgb,(x+30,y+30),(x+w-30,y+h-30),(0,0,255),2)
+        cv2.rectangle(cv_depth,(x+30,y+30),(x+w-30,y+h-30),(0,0,255),2)
+        roi_depth = depth_image[y+30:y+h-30, x+30:x+w-30]
+        
+        n = 0
+        sum = 0
+        for i in range(0,roi_depth.shape[0]):
+            for j in range(0,roi_depth.shape[1]):
+                value = roi_depth.item(i, j)
+                if value > 0.:
+                    n = n + 1
+                    sum = sum + value
+        
+        mean_z = sum / n
+        
+        point_z = mean_z * 0.001; # distance in meters
+        point_x = ((x + w/2) - m_cx) * point_z * inv_fx;
+        point_y = ((y + h/2) - m_cy) * point_z * inv_fy;
+        
+        x_str = "X: " + str(format(point_x, '.2f'))
+        y_str = "Y: " + str(format(point_y, '.2f'))
+        z_str = "Z: " + str(format(point_z, '.2f'))
+                
+        cv2.putText(cv_rgb, x_str, (x+w, y), cv2.FONT_HERSHEY_SIMPLEX,  
+                   0.7, (0,0,255), 1, cv2.LINE_AA) 
+        cv2.putText(cv_rgb, y_str, (x+w, y+20), cv2.FONT_HERSHEY_SIMPLEX,  
+                   0.7, (0,0,255), 1, cv2.LINE_AA)
+        cv2.putText(cv_rgb, z_str, (x+w, y+40), cv2.FONT_HERSHEY_SIMPLEX,  
+                   0.7, (0,0,255), 1, cv2.LINE_AA)
+                   
+        dist = math.sqrt(point_x * point_x + point_y * point_y + point_z * point_z)
+        
+        dist_str = "dist:" + str(format(dist, '.2f')) + "m"
+        
+        cv2.putText(cv_rgb, dist_str, (x+w, y+60), cv2.FONT_HERSHEY_SIMPLEX,  
+                   0.7, (0,255,0), 1, cv2.LINE_AA)
             
-            for (x,y,w,h) in faces:
-                cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
-                roi_gray = gray[y:y+h, x:x+w]
-                roi_color = img[y:y+h, x:x+w]
-            
-            #detector = dlib.get_frontal_face_detector()
-
-            
-        except CvBridgeError as e:
-            print(e)
-        cv2.imshow("faces", img)
-        cv2.waitKey(30)
+    except CvBridgeError as e:
+      print(e)
+      
+    rgbd = np.concatenate((cv_rgb, cv_depth), axis=1)
 
     #convert opencv format back to ros format and publish result
-        try:
-            faces_message = self.bridge.cv2_to_imgmsg(img, "bgr8")
-            self.pub.publish(faces_message)
-        except CvBridgeError as e:
-            print(e)
-
-    def nostrilsDetection(self, gray, img):
-        print "Entered nostrilDetection function"
-        predictor = dlib.shape_predictor('/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/ce301_pkg/scripts/shape_predictor_68_face_landmarks.dat')
-        detector = dlib.get_frontal_face_detector()
-        faces = detector(gray)
-        print(len(faces))
-        for face in faces:
-            landmark = predictor(image=gray,box=face)
-            x1 = landmark.part(32).x
-            y1 = landmark.part(32).y
-            x2 = landmark.part(34).x
-            y2 = landmark.part(34).y
-            cv2.circle(img=img,center=(x1,y1),radius=5,color=(0,255,0),thickness=-1)
-            cv2.circle(img=img,center=(x2,y2),radius=5,color=(0,255,0),thickness=-1)
-        cv2.destroyAllWindows()
-        cv2.imshow("Nose",img)
-        cv2.waitKey(30)
-
-
-
-    def move(self):
-        print(self.stop_flag)
-        if not self.stop_flag:
+    try:
+      faces_message = self.bridge.cv2_to_imgmsg(rgbd, "bgr8")
+      self.pub.publish(faces_message)
+      cv2.imshow("Image",rgbd)
+      cv2.waitKey()
+    except CvBridgeError as e:
+      print(e)
     
-        
-            rospy.init_node('send_joints')
-            pub = rospy.Publisher('/arm_controller/command',
-                                JointTrajectory,
-                                queue_size=10)
 
-            # Create the topic message
-            traj = JointTrajectory()
-            traj.header = Header()
-            # Joint names for UR5
-            traj.joint_names = ['shoulder_pan_joint', 'shoulder_lift_joint',
-                                'elbow_joint', 'wrist_1_joint', 'wrist_2_joint',
-                                'wrist_3_joint']
-
-            rate = rospy.Rate(0.6)
-            elbow_joint = 1.5708
-            wrist_1_joint = 0.6
-            pts = JointTrajectoryPoint()
-            pts.positions = [0.0, -1.5708, 0.2708 ,0.6,0, -0.33]
-       
-
-            while not rospy.is_shutdown() and not self.stop_flag:
-        
-                elbow_joint -= 0.1
-                wrist_1_joint -= 0.1
-                #print "elbow_joint is: %d wrist_1_joint is: %d"%elbow_joint %wrist_1_joint
-                pts.positions = [0.0, -1.5708, 0.2708 , wrist_1_joint, 0, -0.33]
-                pts.time_from_start = rospy.Duration(1.0)
-
-                # Set the points to the trajectory
-                traj.points = []
-                traj.points.append(pts)
-                # Publish the message
-                pub.publish(traj)
-                rate.sleep()
-            print"OUT OF LOOP"
-            self.nostrilsDetection
-        
+def main(args):
+  rospy.init_node('unibas_face_distance_calculator', anonymous=True)
+  fd = get_face_distance_from_camera()
+  try:
+    rospy.spin()
+  except KeyboardInterrupt:
+    print("Shutting down")
 
 if __name__ == '__main__':
-    try:
-        fd=face_detector()
-        fd.move()
-    except rospy.ROSInterruptException:
-        print ("Program interrupted before completion")
+    main(sys.argv)
+

@@ -56,17 +56,15 @@ CMAKE_BINARY_DIR = /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -101,17 +99,6 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -123,15 +110,28 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target test
+test/fast: test
 
-.PHONY : list_install_components/fast
+.PHONY : test/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,124 +166,49 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-ur5_notebook_genpy: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule
+rosgraph_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : ur5_notebook_genpy
+.PHONY : rosgraph_msgs_generate_messages_cpp
 
 # fast build rule for target.
-ur5_notebook_genpy/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/build
-.PHONY : ur5_notebook_genpy/fast
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-ur5_notebook_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule
+roscpp_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
-.PHONY : ur5_notebook_generate_messages_py
+.PHONY : roscpp_generate_messages_lisp
 
 # fast build rule for target.
-ur5_notebook_generate_messages_py/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/build
-.PHONY : ur5_notebook_generate_messages_py/fast
+roscpp_generate_messages_lisp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+std_srvs_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_py
+.PHONY : std_srvs_generate_messages_lisp
 
 # fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_nodejs/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
-.PHONY : gazebo_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_py
-
-# fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_cpp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_cpp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
-.PHONY : gazebo_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_eus
-
-# fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
+std_srvs_generate_messages_lisp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+.PHONY : std_srvs_generate_messages_lisp/fast
 
 # Convenience name for target.
 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
@@ -301,64 +226,109 @@ roscpp_generate_messages_cpp/fast:
 .PHONY : roscpp_generate_messages_cpp/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+roscpp_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_nodejs
+.PHONY : roscpp_generate_messages_nodejs
 
 # fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
+roscpp_generate_messages_nodejs/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-gazebo_msgs_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+std_srvs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
 
-.PHONY : gazebo_msgs_generate_messages_py
+.PHONY : std_srvs_generate_messages_cpp
 
 # fast build rule for target.
-gazebo_msgs_generate_messages_py/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
-.PHONY : gazebo_msgs_generate_messages_py/fast
+std_srvs_generate_messages_cpp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+.PHONY : std_srvs_generate_messages_cpp/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-blocks_poses_publisher: ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule
+rosgraph_msgs_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : blocks_poses_publisher
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # fast build rule for target.
-blocks_poses_publisher/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/build.make ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/build
-.PHONY : blocks_poses_publisher/fast
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule
 
 # Convenience name for target.
-ur5_notebook_genlisp: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule
+blocks_spawner: ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule
 
-.PHONY : ur5_notebook_genlisp
+.PHONY : blocks_spawner
 
 # fast build rule for target.
-ur5_notebook_genlisp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/build
-.PHONY : ur5_notebook_genlisp/fast
+blocks_spawner/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/build.make ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/build
+.PHONY : blocks_spawner/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+.PHONY : std_srvs_generate_messages_py
+
+# fast build rule for target.
+std_srvs_generate_messages_py/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build
+.PHONY : std_srvs_generate_messages_py/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+.PHONY : std_srvs_generate_messages_eus
+
+# fast build rule for target.
+std_srvs_generate_messages_eus/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+.PHONY : std_srvs_generate_messages_eus/fast
 
 # Convenience name for target.
 ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule:
@@ -391,34 +361,94 @@ ur5_notebook_geneus/fast:
 .PHONY : ur5_notebook_geneus/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # Convenience name for target.
-blocks_spawner: ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/rule
+roscpp_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
-.PHONY : blocks_spawner
+.PHONY : roscpp_generate_messages_py
 
 # fast build rule for target.
-blocks_spawner/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/build.make ur5_ROS-Gazebo/CMakeFiles/blocks_spawner.dir/build
-.PHONY : blocks_spawner/fast
+roscpp_generate_messages_py/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+rosgraph_msgs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_cpp
+.PHONY : rosgraph_msgs_generate_messages_eus
 
 # fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
+rosgraph_msgs_generate_messages_eus/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_eus
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_eus/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
+.PHONY : gazebo_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_py
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_py/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
+.PHONY : gazebo_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+ur5_notebook_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule
+
+.PHONY : ur5_notebook_generate_messages_cpp
+
+# fast build rule for target.
+ur5_notebook_generate_messages_cpp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/build
+.PHONY : ur5_notebook_generate_messages_cpp/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_srvs_generate_messages_nodejs
+
+# fast build rule for target.
+std_srvs_generate_messages_nodejs/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
+.PHONY : std_srvs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule:
@@ -451,109 +481,34 @@ trajectory_msgs_generate_messages_py/fast:
 .PHONY : trajectory_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+gazebo_msgs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_eus
+.PHONY : gazebo_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
+gazebo_msgs_generate_messages_nodejs/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
+.PHONY : gazebo_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+gazebo_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_cpp
+.PHONY : gazebo_msgs_generate_messages_cpp
 
 # fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-trajectory_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : trajectory_msgs_generate_messages_cpp
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_cpp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
-.PHONY : trajectory_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-
-.PHONY : std_srvs_generate_messages_cpp
-
-# fast build rule for target.
-std_srvs_generate_messages_cpp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
-.PHONY : std_srvs_generate_messages_cpp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule
-
-# Convenience name for target.
-ur5_notebook_generate_messages: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule
-
-.PHONY : ur5_notebook_generate_messages
-
-# fast build rule for target.
-ur5_notebook_generate_messages/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/build
-.PHONY : ur5_notebook_generate_messages/fast
+gazebo_msgs_generate_messages_cpp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
+.PHONY : gazebo_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
@@ -571,184 +526,19 @@ rosgraph_msgs_generate_messages_py/fast:
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule
 
 # Convenience name for target.
-trajectory_msgs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+ur5_notebook_generate_messages: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/rule
 
-.PHONY : trajectory_msgs_generate_messages_nodejs
+.PHONY : ur5_notebook_generate_messages
 
 # fast build rule for target.
-trajectory_msgs_generate_messages_nodejs/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
-.PHONY : trajectory_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-.PHONY : std_srvs_generate_messages_lisp
-
-# fast build rule for target.
-std_srvs_generate_messages_lisp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
-.PHONY : std_srvs_generate_messages_lisp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-
-.PHONY : std_srvs_generate_messages_py
-
-# fast build rule for target.
-std_srvs_generate_messages_py/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build
-.PHONY : std_srvs_generate_messages_py/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_eus
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_eus/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
-.PHONY : gazebo_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_srvs_generate_messages_nodejs
-
-# fast build rule for target.
-std_srvs_generate_messages_nodejs/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
-.PHONY : std_srvs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-ur5_notebook_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/rule
-
-.PHONY : ur5_notebook_generate_messages_cpp
-
-# fast build rule for target.
-ur5_notebook_generate_messages_cpp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_cpp.dir/build
-.PHONY : ur5_notebook_generate_messages_cpp/fast
+ur5_notebook_generate_messages/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages.dir/build
+.PHONY : ur5_notebook_generate_messages/fast
 
 # Convenience name for target.
 ur5_ROS-Gazebo/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
@@ -811,21 +601,6 @@ _ur5_notebook_generate_messages_check_deps_Tracker/fast:
 .PHONY : _ur5_notebook_generate_messages_check_deps_Tracker/fast
 
 # Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_eus.dir/rule:
 	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_eus.dir/rule
 .PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_eus.dir/rule
@@ -854,21 +629,6 @@ ur5_notebook_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_gene
 ur5_notebook_generate_messages_lisp/fast:
 	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_lisp.dir/build
 .PHONY : ur5_notebook_generate_messages_lisp/fast
-
-# Convenience name for target.
-ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_lisp: ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_lisp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 ur5_ROS-Gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule:
@@ -914,6 +674,96 @@ ur5_notebook_gennodejs: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_gennodejs.dir/rul
 ur5_notebook_gennodejs/fast:
 	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_gennodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_gennodejs.dir/build
 .PHONY : ur5_notebook_gennodejs/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule
+
+# Convenience name for target.
+ur5_notebook_generate_messages_py: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/rule
+
+.PHONY : ur5_notebook_generate_messages_py
+
+# fast build rule for target.
+ur5_notebook_generate_messages_py/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_generate_messages_py.dir/build
+.PHONY : ur5_notebook_generate_messages_py/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule
+
+# Convenience name for target.
+ur5_notebook_genpy: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/rule
+
+.PHONY : ur5_notebook_genpy
+
+# fast build rule for target.
+ur5_notebook_genpy/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genpy.dir/build
+.PHONY : ur5_notebook_genpy/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule
+
+# Convenience name for target.
+ur5_notebook_genlisp: ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/rule
+
+.PHONY : ur5_notebook_genlisp
+
+# fast build rule for target.
+ur5_notebook_genlisp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/ur5_notebook_genlisp.dir/build
+.PHONY : ur5_notebook_genlisp/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule
+
+# Convenience name for target.
+blocks_poses_publisher: ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/rule
+
+.PHONY : blocks_poses_publisher
+
+# fast build rule for target.
+blocks_poses_publisher/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/build.make ur5_ROS-Gazebo/CMakeFiles/blocks_poses_publisher.dir/build
+.PHONY : blocks_poses_publisher/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_nodejs: ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_nodejs/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
+.PHONY : trajectory_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+.PHONY : ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_cpp: ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_cpp
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_cpp/fast:
+	cd /home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/build && $(MAKE) -f ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make ur5_ROS-Gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
+.PHONY : trajectory_msgs_generate_messages_cpp/fast
 
 blocks_poses_publisher.o: blocks_poses_publisher.cpp.o
 
@@ -975,63 +825,53 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... install/strip"
-	@echo "... ur5_notebook_genpy"
-	@echo "... ur5_notebook_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... std_srvs_generate_messages_eus"
-	@echo "... gazebo_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... gazebo_msgs_generate_messages_cpp"
-	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... gazebo_msgs_generate_messages_py"
-	@echo "... blocks_poses_publisher"
-	@echo "... ur5_notebook_genlisp"
-	@echo "... trajectory_msgs_generate_messages_lisp"
-	@echo "... ur5_notebook_geneus"
-	@echo "... blocks_spawner"
-	@echo "... sensor_msgs_generate_messages_cpp"
-	@echo "... trajectory_msgs_generate_messages_eus"
-	@echo "... trajectory_msgs_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_eus"
-	@echo "... test"
-	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... trajectory_msgs_generate_messages_cpp"
-	@echo "... std_srvs_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... ur5_notebook_generate_messages"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... install/local"
-	@echo "... trajectory_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... std_srvs_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
-	@echo "... std_srvs_generate_messages_py"
+	@echo "... std_srvs_generate_messages_lisp"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... std_srvs_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... blocks_spawner"
 	@echo "... list_install_components"
 	@echo "... roscpp_generate_messages_eus"
+	@echo "... std_srvs_generate_messages_py"
+	@echo "... std_srvs_generate_messages_eus"
+	@echo "... trajectory_msgs_generate_messages_lisp"
+	@echo "... ur5_notebook_geneus"
 	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... gazebo_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... gazebo_msgs_generate_messages_eus"
+	@echo "... gazebo_msgs_generate_messages_py"
 	@echo "... ur5_notebook_generate_messages_cpp"
+	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... trajectory_msgs_generate_messages_eus"
+	@echo "... trajectory_msgs_generate_messages_py"
+	@echo "... gazebo_msgs_generate_messages_nodejs"
+	@echo "... gazebo_msgs_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... ur5_notebook_generate_messages"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... ur5_notebook_gencpp"
 	@echo "... _ur5_notebook_generate_messages_check_deps_blocks_poses"
 	@echo "... _ur5_notebook_generate_messages_check_deps_Tracker"
-	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... ur5_notebook_generate_messages_eus"
 	@echo "... ur5_notebook_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... rebuild_cache"
 	@echo "... gazebo_msgs_generate_messages_lisp"
 	@echo "... ur5_notebook_generate_messages_nodejs"
+	@echo "... edit_cache"
 	@echo "... ur5_notebook_gennodejs"
+	@echo "... ur5_notebook_generate_messages_py"
+	@echo "... ur5_notebook_genpy"
+	@echo "... ur5_notebook_genlisp"
+	@echo "... blocks_poses_publisher"
+	@echo "... install/strip"
+	@echo "... trajectory_msgs_generate_messages_nodejs"
+	@echo "... install/local"
+	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... test"
+	@echo "... install"
 	@echo "... blocks_poses_publisher.o"
 	@echo "... blocks_poses_publisher.i"
 	@echo "... blocks_poses_publisher.s"

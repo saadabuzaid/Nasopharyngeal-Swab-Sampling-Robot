@@ -30,6 +30,7 @@ class face_detector:
         self.stop_flag = False
 
     def callback(self, rgb_data):
+        print"INSIDE CALLBACK"
     
         try:
             img = self.bridge.imgmsg_to_cv2(rgb_data, "bgr8")
@@ -73,11 +74,12 @@ class face_detector:
         print(len(faces))
         for face in faces:
             landmark = predictor(image=gray,box=face)
-            x = landmark.part(32).x
-            y = landmark.part(32).y
-            cv2.circle(img=img,center=(x,y),radius=5,color=(0,255,0),thickness=-1)
-        cv2.imshow("Nose",img)
-        cv2.waitKey(30)
+            x1 = landmark.part(32).x
+            y1 = landmark.part(32).y
+            x2 = landmark.part(34).x
+            y2 = landmark.part(34).y
+            cv2.circle(img=img,center=(x1,y1),radius=5,color=(0,255,0),thickness=-1)
+            cv2.circle(img=img,center=(x2,y2),radius=5,color=(0,255,0),thickness=-1)
 
 
 
@@ -119,8 +121,6 @@ class face_detector:
             # Publish the message
             pub.publish(traj)
             rate.sleep()
-        rospy.on_shutdown(self.move())
-        rospy.spin()
         print"OUT OF LOOP"
         #self.nostrilsDetection
         #self.callback

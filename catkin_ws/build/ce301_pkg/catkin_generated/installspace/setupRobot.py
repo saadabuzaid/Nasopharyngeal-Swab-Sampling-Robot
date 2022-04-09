@@ -1,30 +1,25 @@
-#!/usr/bin/python
-#
-# Send joint values to UR5 using messages
-#
+#!/usr/bin/env python2
+from __future__ import print_function
 
 from std_msgs.msg import Header
-from trajectory_msgs.msg import JointTrajectory
-
-from trajectory_msgs.msg import JointTrajectoryPoint
-import dlib
+import roslib
+roslib.load_manifest('unibas_face_distance_calculator')
+import sys
 import rospy
 import cv2
-import sys
 import numpy as np
 import message_filters
 from std_msgs.msg import String
 from sensor_msgs.msg import Image, CameraInfo
 from cv_bridge import CvBridge, CvBridgeError
 import math
-
-
-waypoints = [[0.0, -1.5708, 1.5708, 0.6, 0, -0.33], [0,0,0,0,0,0]]
+from trajectory_msgs.msg import JointTrajectory
+from trajectory_msgs.msg import JointTrajectoryPoint
 
 class face_detector:
 
-
-    def __init__(self):
+    def __init__(self):     
+     
         self.bridge = CvBridge()
     
         self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
@@ -32,14 +27,13 @@ class face_detector:
         self.image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
         self.depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
         
-        self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub], queue_size=10, slop=0.5)
+        self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub], queue_size=10,slop = 0.2)
         self.ts.registerCallback(self.callback)
         
-        self.pub = rospy.Publisher('/unibas_face_distance_calculator/faces', Image, queue_size=1)		
-        self.stop_flag = False
+        self.pub = rospy.Publisher('/unibas_face_distance_calculator/faces', Image, queue_size=1)
+        self.stop_flag = False	
 
     def callback(self, rgb_data, depth_data, camera_info):
-        print"INSIDE CALLBACK"
     
         try:
             camera_info_K = np.array(camera_info.K)
@@ -70,11 +64,8 @@ class face_detector:
             face_cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml')
             gray = cv2.cvtColor(cv_rgb, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-            if(len(faces)>0):
+            if len(faces)>0:
                 self.stop_flag = True
-                self.nostrilsDetection
-            else:
-                self.move()
             rgb_height, rgb_width, rgb_channels = cv_rgb.shape
             for (x,y,w,h) in faces:
                 cv2.rectangle(cv_rgb,(x,y),(x+w,y+h),(255,0,0),2)
@@ -121,14 +112,19 @@ class face_detector:
       
         rgbd = np.concatenate((cv_rgb, cv_depth), axis=1)
 
-        
-        cv2.imshow("faces", cv_rgb)
-        cv2.waitKey()
+    #convert opencv format back to ros format and publish result
+        try:
+            faces_message = self.bridge.cv2_to_imgmsg(rgbd, "bgr8")
+            self.pub.publish(faces_message)
+            cv2.imshow("Image",rgbd)
+            cv2.waitKey()
+        except CvBridgeError as e:
+            print(e)
+    
 
-   
 
     def nostrilsDetection(self, gray, img):
-        print "Entered nostrilDetection function"
+        print("Entered nostrilDetection function")
         predictor = dlib.shape_predictor('/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/ce301_pkg/scripts/shape_predictor_68_face_landmarks.dat')
         detector = dlib.get_frontal_face_detector()
         faces = detector(gray)
@@ -172,7 +168,7 @@ class face_detector:
         
             elbow_joint -= 0.1
             wrist_1_joint -= 0.1
-            print "elbow_joint is: %d wrist_1_joint is: %d",(elbow_joint,wrist_1_joint)
+            print("elbow_joint is: %d wrist_1_joint is: %d",(elbow_joint,wrist_1_joint))
             pts.positions = [0.0, -1.5708, 0.2708 , wrist_1_joint, 0, -0.33]
             pts.time_from_start = rospy.Duration(1.0)
 
@@ -182,7 +178,7 @@ class face_detector:
             # Publish the message
             pub.publish(traj)
             rate.sleep()
-        print"OUT OF LOOP"
+        print("OUT OF LOOP")
         #self.nostrilsDetection
         #self.callback
 
@@ -192,3 +188,5 @@ if __name__ == '__main__':
         fd.move()
     except rospy.ROSInterruptException:
         print ("Program interrupted before completion")
+    
+

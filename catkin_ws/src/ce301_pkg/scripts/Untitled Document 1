@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+from __future__ import print_function
+
+import roslib
+roslib.load_manifest('unibas_face_distance_calculator')
+import sys
+import rospy
+import cv2
+import numpy as np
+import message_filters
+from std_msgs.msg import String
+from sensor_msgs.msg import Image, CameraInfo
+from cv_bridge import CvBridge, CvBridgeError
+import math
+
+class get_face_distance_from_camera:
+
+  def __init__(self):     
+     
+    self.bridge = CvBridge()
+    
+    self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
+           	
+    self.image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
+    self.depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
+        
+    self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub], queue_size=10, slop=0.5)
+    self.ts.registerCallback(self.callback)
+        
+    self.pub = rospy.Publisher('/unibas_face_distance_calculator/faces', Image, queue_size=1)	
+
+
+    def detectFace(self,rgb_data):
+        try:
+            img = self.bridge.imgmsg_to_cv2(rgb_data, "bgr8")
+            face_cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml')
+            #face_cascade.load('haarcascade_frontalface_default.xml')
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+            print"Number of faces detected",len(faces)
+            if(len(faces) > 0):
+                self.stop_flag = True
+                self.nostrilsDetection(gray,img)
+                self.distanceCalc()
+            else: 
+                self.move
+            
+            for (x,y,w,h) in faces:
+                cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+                roi_gray = gray[y:y+h, x:x+w]
+                roi_color = img[y:y+h, x:x+w]
+            
+            #detector = dlib.get_frontal_face_detector()
+
+            
+        except CvBridgeError as e:
+            print(e)
+        
+        cv2.imshow("faces", img)
+        cv2.waitKey(30)
+
+    def distanceCalc(self,depth_data):
+        
+
+
+
+
+
+
+
+
+        

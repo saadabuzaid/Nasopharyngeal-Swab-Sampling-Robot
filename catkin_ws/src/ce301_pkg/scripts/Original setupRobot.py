@@ -5,7 +5,6 @@
 
 from std_msgs.msg import Header
 from trajectory_msgs.msg import JointTrajectory
-
 from trajectory_msgs.msg import JointTrajectoryPoint
 import dlib
 import rospy
@@ -89,8 +88,8 @@ class face_detector:
         
         rospy.init_node('send_joints')
         pub = rospy.Publisher('/arm_controller/command',
-                            JointTrajectory,
-                            queue_size=10)
+                                JointTrajectory,
+                                queue_size=10)
 
         # Create the topic message
         traj = JointTrajectory()

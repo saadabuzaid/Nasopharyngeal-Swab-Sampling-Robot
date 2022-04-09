@@ -111,6 +111,7 @@ class face_detector:
             print(e)
       
         rgbd = np.concatenate((cv_rgb, cv_depth), axis=1)
+        rospy.spin()
 
     #convert opencv format back to ros format and publish result
         try:
@@ -186,6 +187,7 @@ if __name__ == '__main__':
     try:
         fd=face_detector()
         fd.move()
+        rospy.spin()
     except rospy.ROSInterruptException:
         print ("Program interrupted before completion")
     

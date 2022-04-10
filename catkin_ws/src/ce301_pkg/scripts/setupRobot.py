@@ -18,8 +18,13 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 
 class face_detector:
 
+    def test(self,sa,saa,saad):
+        print("testttt")
+        
+
     def __init__(self):     
-     
+        
+       # rospy.init_node('CE301')
         self.bridge = CvBridge()
     
         self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
@@ -27,14 +32,14 @@ class face_detector:
         self.image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
         self.depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
         
-        self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub],1,1)
-        self.ts.registerCallback(self.callback)
-        
+        self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub],queue_size = 10, slop = 0.2)
+        self.ts.registerCallback(self.test)
+        #rospy.spin()
         self.pub = rospy.Publisher('/unibas_face_distance_calculator/faces', Image, queue_size=1)
         self.stop_flag = False	
-
+        
     def callback(self, rgb_data, depth_data, camera_info):
-    
+        print("CALLBACK")
         try:
             camera_info_K = np.array(camera_info.K)
           
@@ -66,6 +71,8 @@ class face_detector:
             faces = face_cascade.detectMultiScale(gray, 1.3, 5)
             if len(faces)>0:
                 self.stop_flag = True
+            else:
+                self.move
             rgb_height, rgb_width, rgb_channels = cv_rgb.shape
             for (x,y,w,h) in faces:
                 cv2.rectangle(cv_rgb,(x,y),(x+w,y+h),(255,0,0),2)
@@ -106,12 +113,14 @@ class face_detector:
             
                 cv2.putText(cv_rgb, dist_str, (x+w, y+60), cv2.FONT_HERSHEY_SIMPLEX,  
                        0.7, (0,255,0), 1, cv2.LINE_AA)
+        
+            cv2.imshow("IMAGETRIAL",cv_rgb)
+            cv2.waitKey()
                 
         except CvBridgeError as e:
             print(e)
       
         rgbd = np.concatenate((cv_rgb, cv_depth), axis=1)
-        rospy.spin()
 
     #convert opencv format back to ros format and publish result
         try:

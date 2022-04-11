@@ -18,10 +18,26 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 
 class face_detector:
 
-    def test(self,sa,saa,saad):
-        print("testttt")
+    def test(self, rgb_data, depth_data, camera_info):
+        print("TEST")
+        camera_info_K = np.array(camera_info.K)
+          
+          # Intrinsic camera matrix for the raw (distorted) images.
+          #     [fx  0 cx]
+          # K = [ 0 fy cy]
+          #     [ 0  0  1]
         
-
+        m_fx = camera_info.K[0];
+        m_fy = camera_info.K[4];
+        m_cx = camera_info.K[2];
+        m_cy = camera_info.K[5];
+        inv_fx = 1. / m_fx;
+        inv_fy = 1. / m_fy;
+        cv_rgb = self.bridge.imgmsg_to_cv2(rgb_data, "bgr8")
+        depth_image = self.bridge.imgmsg_to_cv2(depth_data, "32FC1")
+        
+        cv2.imshow("ImageRGB",cv_rgb)
+        cv2.waitKey(30)
     def __init__(self):     
         
        # rospy.init_node('CE301')

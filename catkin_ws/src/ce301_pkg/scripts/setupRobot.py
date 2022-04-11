@@ -18,41 +18,25 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 
 class face_detector:
 
-    def test(self, rgb_data, depth_data, camera_info):
-        print("TEST")
-        camera_info_K = np.array(camera_info.K)
-          
-          # Intrinsic camera matrix for the raw (distorted) images.
-          #     [fx  0 cx]
-          # K = [ 0 fy cy]
-          #     [ 0  0  1]
+    def test(self,sa,saa,saad):
+        print("testttt")
         
-        m_fx = camera_info.K[0];
-        m_fy = camera_info.K[4];
-        m_cx = camera_info.K[2];
-        m_cy = camera_info.K[5];
-        inv_fx = 1. / m_fx;
-        inv_fy = 1. / m_fy;
-        cv_rgb = self.bridge.imgmsg_to_cv2(rgb_data, "bgr8")
-        depth_image = self.bridge.imgmsg_to_cv2(depth_data, "32FC1")
-        
-        cv2.imshow("ImageRGB",cv_rgb)
-        cv2.waitKey(30)
+
     def __init__(self):     
         
        # rospy.init_node('CE301')
         self.bridge = CvBridge()
     
-        self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
+        #self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
            	
-        self.image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
-        self.depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
+        #self.image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
+        #self.depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
         
-        self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub],queue_size = 10, slop = 0.2)
-        self.ts.registerCallback(self.test)
+        #self.ts = message_filters.ApproximateTimeSynchronizer([self.image_sub, self.depth_sub, self.camera_info_sub],queue_size = 10, slop = 0.2)
+        #self.ts.registerCallback(self.test)
         #rospy.spin()
-        self.pub = rospy.Publisher('/unibas_face_distance_calculator/faces', Image, queue_size=1)
-        self.stop_flag = False	
+        #self.pub = rospy.Publisher('/unibas_face_distance_calculator/faces', Image, queue_size=1)
+        #self.stop_flag = False	
         
     def callback(self, rgb_data, depth_data, camera_info):
         print("CALLBACK")
@@ -88,7 +72,7 @@ class face_detector:
             if len(faces)>0:
                 self.stop_flag = True
             else:
-                self.move
+                self.move()
             rgb_height, rgb_width, rgb_channels = cv_rgb.shape
             for (x,y,w,h) in faces:
                 cv2.rectangle(cv_rgb,(x,y),(x+w,y+h),(255,0,0),2)
@@ -131,7 +115,7 @@ class face_detector:
                        0.7, (0,255,0), 1, cv2.LINE_AA)
         
             cv2.imshow("IMAGETRIAL",cv_rgb)
-            cv2.waitKey()
+            cv2.waitKey(0)
                 
         except CvBridgeError as e:
             print(e)
@@ -170,7 +154,7 @@ class face_detector:
 
     
         
-        rospy.init_node('send_joints')
+        rospy.init_node('send_joints',anonymous=False)
         pub = rospy.Publisher('/arm_controller/command',
                             JointTrajectory,
                             queue_size=10)
@@ -210,8 +194,15 @@ class face_detector:
 
 if __name__ == '__main__':
     try:
-        fd=face_detector()
-        fd.move()
+        fd = face_detector()
+        rospy.init_node('ce301', anonymous=True)
+        camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
+           	
+        image_sub = message_filters.Subscriber("/kinect/color/image_raw",Image)
+        depth_sub = message_filters.Subscriber("/kinect/depth/image_raw",Image)
+        
+        ts = message_filters.ApproximateTimeSynchronizer([image_sub, depth_sub, camera_info_sub],queue_size = 10, slop = 0.2)
+        ts.registerCallback(fd.callback)
         rospy.spin()
     except rospy.ROSInterruptException:
         print ("Program interrupted before completion")

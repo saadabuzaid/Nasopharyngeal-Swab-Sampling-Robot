@@ -23,10 +23,15 @@ class face_detector:
     def __init__(self):
         self.bridge = CvBridge()
     
-        self.image_sub = rospy.Subscriber("/kinect/color/image_raw", Image, self.callback)
+        self.image_sub = rospy.Subscriber("/kinect/color/image_raw", Image, self.update_color)
     
         self.pub = rospy.Publisher('/ce301/faces', Image, queue_size=1)	
         self.stop_flag = False
+
+
+    def update_color(self,rgb_data):
+        self.rgb_data = rgb_data
+
 
     def callback(self, rgb_data):
         print"INSIDE CALLBACK"
@@ -41,8 +46,8 @@ class face_detector:
             if(len(faces) > 0):
                 self.stop_flag = True
                 self.nostrilsDetection(gray,img)
-            else: 
-                self.move
+            #else: 
+                #self.move
             
             for (x,y,w,h) in faces:
                 cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
@@ -120,6 +125,7 @@ class face_detector:
             # Publish the message
             pub.publish(traj)
             rate.sleep()
+            self.callback(self.rgb_data)
         print"OUT OF LOOP"
         #self.nostrilsDetection
         #self.callback

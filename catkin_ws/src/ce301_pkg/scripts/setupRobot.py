@@ -214,7 +214,7 @@ class face_detector:
             # Publish the message
             pub.publish(traj)
             rate.sleep()
-        self.callback(self.rgb_data,self.depth_data,self.camera_info)    
+            self.callback(self.rgb_data,self.depth_data,self.camera_info)    
         print("OUT OF LOOP")
         #self.nostrilsDetection
         #self.callback

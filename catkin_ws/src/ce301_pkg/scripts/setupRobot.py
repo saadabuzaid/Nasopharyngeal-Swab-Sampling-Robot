@@ -82,8 +82,8 @@ class face_detector:
             inv_fx = 1. / m_fx;
             inv_fy = 1. / m_fy;
         
-        
-            cv_rgb = self.bridge.imgmsg_to_cv2(rgb_data, "passthrough")[:, :, ::-1]
+            print("1")
+            cv_rgb = self.bridge.imgmsg_to_cv2(rgb_data, "bgr8")
             depth_image = self.bridge.imgmsg_to_cv2(depth_data, "32FC1")
             depth_array = np.array(depth_image, dtype=np.float32)
             cv2.normalize(depth_array, depth_array, 0, 1, cv2.NORM_MINMAX)
@@ -92,7 +92,7 @@ class face_detector:
             cv_depth[:,:,0] = depth_8
             cv_depth[:,:,1] = depth_8
             cv_depth[:,:,2] = depth_8
-          
+            print("2")
             face_cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml')
             gray = cv2.cvtColor(cv_rgb, cv2.COLOR_BGR2GRAY)
             faces = face_cascade.detectMultiScale(gray, 1.3, 5)
@@ -139,26 +139,19 @@ class face_detector:
             
                 cv2.putText(cv_rgb, dist_str, (x+w, y+60), cv2.FONT_HERSHEY_SIMPLEX,  
                        0.7, (0,255,0), 1, cv2.LINE_AA)
-        
+            print("3")
             cv2.imshow("IMAGETRIAL",cv_rgb)
             cv2.waitKey(500)
-                
+            
         except CvBridgeError as e:
             print(e)
       
         rgbd = np.concatenate((cv_rgb, cv_depth), axis=1)
 
     #convert opencv format back to ros format and publish result
-        try:
-            faces_message = self.bridge.cv2_to_imgmsg(rgbd, "bgr8")
-            self.pub.publish(faces_message)
-            cv2.imshow("Image",rgbd)
-            cv2.waitKey()
-        except CvBridgeError as e:
-            print(e)
+        
     
-
-
+        print("4")
     def nostrilsDetection(self, gray, img):
         print("Entered nostrilDetection function")
         predictor = dlib.shape_predictor('/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/ce301_pkg/scripts/shape_predictor_68_face_landmarks.dat')

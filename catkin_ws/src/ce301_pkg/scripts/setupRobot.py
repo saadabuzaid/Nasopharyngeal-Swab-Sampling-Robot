@@ -2,6 +2,7 @@
 from __future__ import print_function
 
 from std_msgs.msg import Header
+import dlib
 import roslib
 roslib.load_manifest('unibas_face_distance_calculator')
 import sys
@@ -15,6 +16,7 @@ from cv_bridge import CvBridge, CvBridgeError
 import math
 from trajectory_msgs.msg import JointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
+import time
 
 class face_detector:
 
@@ -98,6 +100,7 @@ class face_detector:
             faces = face_cascade.detectMultiScale(gray, 1.3, 5)
             if len(faces)>0:
                 self.stop_flag = True
+                self.nostrilsDetection(gray,cv_rgb)
             
             rgb_height, rgb_width, rgb_channels = cv_rgb.shape
             for (x,y,w,h) in faces:
@@ -152,7 +155,10 @@ class face_detector:
         
     
         print("4")
+        
+        
     def nostrilsDetection(self, gray, img):
+        global coordinates
         print("Entered nostrilDetection function")
         predictor = dlib.shape_predictor('/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/src/ce301_pkg/scripts/shape_predictor_68_face_landmarks.dat')
         detector = dlib.get_frontal_face_detector()
@@ -166,6 +172,7 @@ class face_detector:
             y2 = landmark.part(34).y
             cv2.circle(img=img,center=(x1,y1),radius=5,color=(0,255,0),thickness=-1)
             cv2.circle(img=img,center=(x2,y2),radius=5,color=(0,255,0),thickness=-1)
+            print((x1,y1),(x2,y2))
 
 
 
@@ -186,7 +193,7 @@ class face_detector:
                             'elbow_joint', 'wrist_1_joint', 'wrist_2_joint',
                             'wrist_3_joint']
 
-        rate = rospy.Rate(0.6)
+        rate = rospy.Rate(1)
         elbow_joint = 1.5708
         wrist_1_joint = 0.6
         pts = JointTrajectoryPoint()
@@ -207,7 +214,8 @@ class face_detector:
             # Publish the message
             pub.publish(traj)
             rate.sleep()
-            self.callback(self.rgb_data,self.depth_data,self.camera_info)    
+            self.callback(self.rgb_data,self.depth_data,self.camera_info) 
+        time.sleep(3)
         print("OUT OF LOOP")
         #self.nostrilsDetection
         #self.callback

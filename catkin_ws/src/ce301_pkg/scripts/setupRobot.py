@@ -17,6 +17,8 @@ import math
 from trajectory_msgs.msg import JointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
 import time
+import moveit_msgs.msg
+import moveit_commander
 
 class face_detector:
 
@@ -172,15 +174,15 @@ class face_detector:
             y2 = landmark.part(34).y
             cv2.circle(img=img,center=(x1,y1),radius=5,color=(0,255,0),thickness=-1)
             cv2.circle(img=img,center=(x2,y2),radius=5,color=(0,255,0),thickness=-1)
-            print((x1,y1),(x2,y2))
-
+            coordinates = [(int(x1),int(y1)),(int(x2),int(y2))]
+        
 
 
     def move(self):
 
     
         
-        rospy.init_node('send_joints',anonymous=False)
+        rospy.init_node('send_joints',anonymous=True)
         pub = rospy.Publisher('/arm_controller/command',
                             JointTrajectory,
                             queue_size=10)
@@ -217,13 +219,15 @@ class face_detector:
             self.callback(self.rgb_data,self.depth_data,self.camera_info) 
         time.sleep(3)
         print("OUT OF LOOP")
-        #self.nostrilsDetection
-        #self.callback
+        print(coordinates)
+        #self.Moveit()
+
 
 if __name__ == '__main__':
     try:
         fd = face_detector()
         fd.move()
+        fd.Moveit()
     except rospy.ROSInterruptException:
         print ("Program interrupted before completion")
     

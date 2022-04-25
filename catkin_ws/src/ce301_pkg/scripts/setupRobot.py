@@ -19,8 +19,12 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 import time
 import moveit_msgs.msg
 import moveit_commander
+from tf import TransformListener
+from tf import Transformer
+from geometry_msgs.msg import PointStamped
 
 class face_detector:
+    
 
     def test(self,sa,saa,saad):
         print("testttt")
@@ -48,6 +52,7 @@ class face_detector:
     def __init__(self):     
         
        # rospy.init_node('CE301')
+        
         self.bridge = CvBridge()
     
         self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
@@ -124,6 +129,7 @@ class face_detector:
                 mean_z = sum / n
             
                 point_z = mean_z ; # distance in meters
+                self.z = point_z
                 point_x = ((x + w/2) - m_cx) * point_z * inv_fx;
                 point_y = ((y + h/2) - m_cy) * point_z * inv_fy;
             
@@ -169,7 +175,9 @@ class face_detector:
         for face in faces:
             landmark = predictor(image=gray,box=face)
             x1 = landmark.part(32).x
+            self.x = x1
             y1 = landmark.part(32).y
+            self.y = y1
             x2 = landmark.part(34).x
             y2 = landmark.part(34).y
             cv2.circle(img=img,center=(x1,y1),radius=5,color=(0,255,0),thickness=-1)
@@ -220,6 +228,18 @@ class face_detector:
         time.sleep(3)
         print("OUT OF LOOP")
         print(coordinates)
+        self.tf = TransformListener()
+
+        p = PointStamped()
+        p.header.stamp = rospy.Time.now()
+        p.header.frame_id = "/depth_camera"
+        
+        p.point.x = self.x
+        p.point.y = self.y
+        p.point.z = self.z
+        trans = self.tf.transformPoint("world", p)
+        print("TRANSFORMED:")
+        print(trans)
         #self.Moveit()
 
 

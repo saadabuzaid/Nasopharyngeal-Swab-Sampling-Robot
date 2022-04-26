@@ -21,7 +21,10 @@ import moveit_msgs.msg
 import moveit_commander
 from tf import TransformListener
 from tf import Transformer
-from geometry_msgs.msg import PointStamped
+import tf2_ros
+from tf2_geometry_msgs import PointStamped
+from geometry_msgs.msg import Point
+
 
 class face_detector:
     
@@ -228,16 +231,19 @@ class face_detector:
         time.sleep(3)
         print("OUT OF LOOP")
         print(coordinates)
-        self.tf = TransformListener()
-
+        tf_buf = tf2_ros.Buffer()
         p = PointStamped()
-        p.header.stamp = rospy.Time.now()
-        p.header.frame_id = "/depth_camera"
+        p.header.stamp = rospy.Time(0)
+        p.header.frame_id = "depth_camera"
         
         p.point.x = self.x
         p.point.y = self.y
         p.point.z = self.z
-        trans = self.tf.transformPoint("world", p)
+        
+        tf_listener = tf2_ros.TransformListener(tf_buf)
+        trans = tf_buf.lookup_transform('depth_camera','world',rospy.Time(0),rospy.Duration(1.0))
+        trans = tf_buf.transform(p, "world")
+
         print("TRANSFORMED:")
         print(trans)
         #self.Moveit()
@@ -247,7 +253,6 @@ if __name__ == '__main__':
     try:
         fd = face_detector()
         fd.move()
-        fd.Moveit()
     except rospy.ROSInterruptException:
         print ("Program interrupted before completion")
     

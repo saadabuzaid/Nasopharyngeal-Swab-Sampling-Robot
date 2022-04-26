@@ -24,6 +24,7 @@ from tf import Transformer
 import tf2_ros
 from tf2_geometry_msgs import PointStamped
 from geometry_msgs.msg import Point
+import image_geometry
 
 
 class face_detector:
@@ -57,6 +58,8 @@ class face_detector:
        # rospy.init_node('CE301')
         
         self.bridge = CvBridge()
+        
+        self.cam_model = image_geometry.PinholeCameraModel()
     
         self.camera_info_sub = message_filters.Subscriber('/kinect/color/camera_info', CameraInfo)
            	
@@ -230,19 +233,23 @@ class face_detector:
             self.callback(self.rgb_data,self.depth_data,self.camera_info) 
         time.sleep(3)
         print("OUT OF LOOP")
-        print(coordinates)
+        self.cam_model.fromCameraInfo(self.camera_info)
+        ray = np.array(self.cam_model.projectPixelTo3dRay((self.x,self.y)))
+        self.point3d = ray * self.z
+        
+        print(self.point3d)
         tf_buf = tf2_ros.Buffer()
         p = PointStamped()
         p.header.stamp = rospy.Time(0)
         p.header.frame_id = "depth_camera"
         
-        p.point.x = self.x
-        p.point.y = self.y
-        p.point.z = self.z
+        p.point.x = ray[0]
+        p.point.y = ray[1]
+        p.point.z = ray[2]
         
         tf_listener = tf2_ros.TransformListener(tf_buf)
         trans = tf_buf.lookup_transform('depth_camera','world',rospy.Time(0),rospy.Duration(1.0))
-        trans = tf_buf.transform(p, "world")
+        trans = tf_buf.transform(p, "base_link")
 
         print("TRANSFORMED:")
         print(trans)

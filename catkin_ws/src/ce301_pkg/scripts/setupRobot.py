@@ -243,12 +243,12 @@ class face_detector:
         p.header.stamp = rospy.Time(0)
         p.header.frame_id = "depth_camera"
         
-        p.point.x = ray[0]
-        p.point.y = ray[1]
-        p.point.z = ray[2]
+        p.point.x = self.point3d[0]
+        p.point.y = self.point3d[1]
+        p.point.z = self.point3d[2]
         
         tf_listener = tf2_ros.TransformListener(tf_buf)
-        trans = tf_buf.lookup_transform('depth_camera','world',rospy.Time(0),rospy.Duration(1.0))
+        trans = tf_buf.lookup_transform('depth_camera','base_link',rospy.Time(0),rospy.Duration(1.0))
         trans = tf_buf.transform(p, "base_link")
 
         print("TRANSFORMED:")

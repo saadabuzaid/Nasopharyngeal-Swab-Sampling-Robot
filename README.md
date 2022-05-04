@@ -1,6 +1,7 @@
 # CE301-Capstone Individual project / Saad Abuzaid Saad
 ##  **This is a Robot system assisting in nasopharyngeal swab sampling project.**
 #### WARNING!! THIS PROJECT IS STILL NOT FINISHED, SO BECAREFUL USING ITS CODE ####
+##### ALL NON-FINAL CHANGES ARE IN OTHER BRANCHES, SO ALWAYS CLONE MASTER BRANCH #####
 
 #### How to use this repository
 - This project was tested in Ubuntu 16.04 with ROS kinetic.

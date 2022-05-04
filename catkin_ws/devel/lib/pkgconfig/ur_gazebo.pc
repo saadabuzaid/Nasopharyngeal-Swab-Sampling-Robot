@@ -1,0 +1,8 @@
+prefix=/home/saadabuzaid/CE301_saad_saad_a_s_a/catkin_ws/devel
+
+Name: ur_gazebo
+Description: Description of ur_gazebo
+Version: 1.2.7
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
